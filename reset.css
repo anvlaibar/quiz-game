@@ -1,0 +1,23 @@
+html, body, div, form, fieldset, legend, label
+{
+ margin: 0;
+ padding: 0; 
+}
+html {
+  line-height: 1.15; 
+  -webkit-text-size-adjust: 100%; 
+}
+body {
+  margin: 0;
+}
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+b,
+strong {
+  font-weight: bolder;
+}
