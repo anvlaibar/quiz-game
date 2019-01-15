@@ -3,3 +3,17 @@
 h1 {
   text-transform: uppercase;
 }
+
+#choices li {
+  list-style: none;
+}
+
+/* 
+input:checked ~ li,
+input:checked + li,
+.input:checked ~ li,
+.input:checked + li,
+input:checked ~ span,
+input:checked + span {
+  background:red;
+} */
