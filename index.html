@@ -2,22 +2,42 @@
 <html>
   <head>
     <title></title>
-    <link rel="stylesheet" href="style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link
+      href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono|IBM+Plex+Sans:400,500,600,700|IBM+Plex+Serif:400,500,600,700"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
   <body>
+    <div class="content">
+      <header></header>
 
-    <h1>Quiz game</h1>
+      <main class="main">
+        <div class="quizWrap">
+          <h1>Quiz</h1>
 
-    <h2>Question</h2>
+          <h2 id="question"></h2>          
+          <ul id="choices">
+             
+          </ul>
+              
+          <button>Answer</button>
+          <div id="response"></div>
+        </div>
+      </main>
 
-    <ul id="choices">
-      
-    </ul>
-    <button>Answer</button>
-
-
-
+      <footer>
+        <div class="cp">
+          <p>
+              <a href="https://github.com/anvlaibar/quiz-game" class="repo">
+                <img src="github.png" />
+              </a>
+            <span>&lt;/&gt;</span> <a href="https:/olavhaugen.no">olavhaugen.no</a>            
+          </p>
+        </div>
+      </footer>
+    </div>
     <script src="code.js"></script>
   </body>
 </html>

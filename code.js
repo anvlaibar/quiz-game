@@ -22,7 +22,7 @@ var questions = [
   },
   
   {
-    question: "Hva er en enklere måte å si 1048576 byte på?",
+    question: "Hva er en enklere måte å si <code>1048576</code> byte på?",
     choices: ["1 megabyte","1 kilobyte","1 gigabyte","1 petabyte"],
     answer: 1
   },
@@ -64,7 +64,7 @@ var questions = [
   },
 
   {
-    question: "Hvilken farge representerer hexadesimalet #ff0000",
+    question: "Hvilken farge representerer hexadesimalet <code>#ff0000</code>?",
     choices: ["Sort","Grønn","Gul","Hvit","Rød"],
     answer: 4
   },
@@ -78,9 +78,6 @@ questions.forEach(function(item,index,array) {
   //console.log(item,index)
 })
 
-let num = Math.floor((Math.random() * questions.length));
-
-let val = questions[num].choices
 
 
 // val = val.forEach(function (val, index) {
@@ -111,19 +108,41 @@ questions = shuffle(questions);
 //console.log(questions)
 
 
-var id = 1
-choiceWrap = (choice) => `<li><input type="checkbox" name="${id}" value="${choice}" 
-                class="input"><span> Test ${choice}<span></li>`
+
+choiceWrap = (id,choice) => `<li><label class="choice"><input type="checkbox" id="${id}" value="${choice}" 
+                class="input"><span class="check"> </span><span> ${choice}</span></label></li>`
 
 let html = (elmId, value) => {
-  document.getElementById(elmId).innerHTML = value;
+  var elem = document.createElement('li');
+  //document.getElementById(elmId).innerHTML = value;
+  var elmId = document.getElementById(elmId);
+
+  elem.innerHTML = value;
+  while (elem.firstChild) {
+    elmId.appendChild(elem.firstChild);
+  }
 }
 
-html("choices",null);
 
+let num = Math.floor((Math.random() * questions.length));
+
+let val = questions[num].choices;
+
+var val2 = questions[num].question;
+
+//html("choices",null);
+// val2.forEach(function (value, index) {
+// 	html("question","value.question");
+// });
+
+question = html("question",val2);
 choices = val.forEach(function (value, index) {
-	return html("choices",choiceWrap(value));
+	html("choices",choiceWrap(index,value));
 });
+answer = questions[num].answer
+console.log(answer)
+
+
 
 // const choiceWrap = (val) = {
 

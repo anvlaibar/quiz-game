@@ -1,19 +1,176 @@
 @import 'reset.css';
 
+body {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 16px;
+  text-align: center;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'IBM Plex Serif', serif;
+  font-weight: 400;  
+}
+
+.content {
+  max-width: 1080px;
+  padding:2em;
+  width: 100%;
+  margin: 0 auto;
+}
+
 h1 {
   text-transform: uppercase;
 }
 
 #choices li {
   list-style: none;
+  padding:2em 1em;
+  margin:1em;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,.04); 
+  transition: box-shadow .3s ease-in-out,
+              transform .3s ease-in-out; 
 }
 
-/* 
-input:checked ~ li,
-input:checked + li,
-.input:checked ~ li,
-.input:checked + li,
-input:checked ~ span,
-input:checked + span {
-  background:red;
-} */
+#choices li:hover {
+  box-shadow: 0 15px 65px 0 rgba(0,0,0,.1);
+  transform: scale(1.05)  
+}
+
+main {
+  margin: 1em auto;
+}
+
+.quizWrap {
+  width:80%;
+  margin:60px auto 0;
+  padding:60px 30px;
+  box-shadow: 0 75px 150px 0 rgba(0,0,0,.1);
+  border-radius: 5px;
+}
+
+code {
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+footer {
+  width:80%;
+  margin: 0 auto;
+}
+
+.cp {
+  text-align: center;
+  margin: 0 auto;
+  color:#aaa;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.cp .repo img {
+  height: 16px;
+  vertical-align: middle;
+  opacity: .5;
+  transition:
+    transform .3s ease-in-out,
+    opacity .3s ease-in-out;
+}
+
+.cp .repo:hover img {
+  opacity: .75;
+  transform: scale(1.1);
+}
+
+.cp span {
+  letter-spacing: -2px;
+  font-size: .85em;
+}
+
+a {
+  text-decoration: none;
+  color:#999;  
+}
+
+a:hover {
+  color:inherit;
+  color:#666;
+}
+
+ul {
+  margin: 3em auto;
+}
+
+.li {
+  cursor: pointer;
+}
+.choice {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.check {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+.check::after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+input[type="checkbox"]:checked ~ .check {
+  background-color: #2196F3;
+}
+
+li:hover input[type="checkbox"] ~ .check {
+  background-color: #ccc;
+}
+
+input[type="checkbox"]:checked ~ .check:after {
+  display: block;
+}
+
+button {
+  background: #0069ed;
+  color: #ffffff;
+  text-transform: uppercase;
+  margin:2em auto 0;
+}
+
+button:hover,
+button:focus {
+  background: #0053ba;
+}
+
+button:focus {
+  outline: 1px solid #fff;
+}
+
+button:active {
+}
