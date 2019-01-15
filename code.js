@@ -68,10 +68,6 @@ var questions = [
     choices: ["Sort","Grønn","Gul","Hvit","Rød"],
     answer: 4
   },
-
-  
-
-
 ]
 
 answer = (answer) => {
@@ -83,7 +79,15 @@ questions.forEach(function(item,index,array) {
 })
 
 let num = Math.floor((Math.random() * questions.length));
-console.log(questions[num])
+
+let val = questions[num].choices
+
+
+// val = val.forEach(function (val, index) {
+// 	return val[index];
+// });
+
+
 
 
 function shuffle(array) {
@@ -104,22 +108,24 @@ function shuffle(array) {
 }
 
 questions = shuffle(questions);
-console.log(questions)
+//console.log(questions)
 
-var val = "test"
+
 var id = 1
-const choice = 
-`
-<li><input type="checkbox" name="${id}" value="${val}" class="input"><span> Test ${val}<span></li>
-`
+choiceWrap = (choice) => `<li><input type="checkbox" name="${id}" value="${choice}" 
+                class="input"><span> Test ${choice}<span></li>`
 
 let html = (elmId, value) => {
-  document.getElementById(elmId).innerHTML = choice;
+  document.getElementById(elmId).innerHTML = value;
 }
 
-html("choices",val);
+html("choices",null);
 
-const choiceWrap = (val) = {
+choices = val.forEach(function (value, index) {
+	return html("choices",choiceWrap(value));
+});
 
-}
+// const choiceWrap = (val) = {
+
+// }
 
