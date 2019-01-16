@@ -1,13 +1,21 @@
 let questions = [
   {
     question: "Hvor er det kaldest: Sydpolen eller Nordpolen?",
-    choices: ["Nordpolen", "Sydpolen"],
+    choices: [
+      "Nordpolen",
+      "Sydpolen"
+    ],
     answer: 1
   },
 
   {
     question: "Hva er en enklere måte å si <code>1048576</code> byte på?",
-    choices: ["1 megabyte", "1 kilobyte", "1 gigabyte", "1 petabyte"],
+    choices: [
+      "1 megabyte", 
+      "1 kilobyte", 
+      "1 gigabyte", 
+      "1 petabyte"
+    ],
     answer: 0
   },
 
@@ -57,39 +65,54 @@ let questions = [
 
   {
     question: "Hvem var den første personen i verdensrommet?",
-    choices: ["Neil Armstrong", "John Glenn", "Alexey Leonov", "Yuri Gagarin"],
+    choices: [
+      "Neil Armstrong", 
+      "John Glenn", 
+      "Alexey Leonov", 
+      "Yuri Gagarin"
+    ],
     answer: 3
   },
 
   {
     question: "Hva studerer man i vexillologi",
-    choices: ["Frimerker", "Flagg", "Ordenes opphav", "Samfunn"],
+    choices: [
+      "Frimerker",
+      "Flagg", 
+      "Ordenes opphav", 
+      "Samfunn"
+    ],
     answer: 1
   },
 
   {
     question: "Hvilken farge representerer hexadesimalet <code>#ff0000</code>?",
-    choices: ["Sort", "Grønn", "Hvit", "Rød"],
+    choices: [
+      "Sort", 
+      "Grønn", 
+      "Hvit", 
+      "Rød"
+    ],
     answer: 3
   }
 ]
 
+// Shuffle questions
 function shuffle(array) {
-  var currentIndex = array.length,
-    temporaryValue,
-    randomIndex
+  var curVal = array.length,
+    tempVal,
+    rand
 
-  while (0 !== currentIndex) {
-    randomIndex = Math.floor(Math.random() * currentIndex)
-    currentIndex -= 1
+  while (0 !== curVal) {
+    rand = Math.floor(Math.random() * curVal)
+    curVal -= 1
 
-    temporaryValue = array[currentIndex]
-    array[currentIndex] = array[randomIndex]
-    array[randomIndex] = temporaryValue
+    tempVal = array[curVal]
+    array[curVal] = array[rand]
+    array[rand] = tempVal
   }
   return array
-}
-questions = shuffle(questions)
+} questions = shuffle(questions)
 
 // Prevent cheating
 var state = 1
@@ -102,10 +125,8 @@ let buttonState = (s)  => {
 document.body.addEventListener("click", function(event) {
   if (event.target.classList.contains("submit")) {
     if (state == 0) {
-      
       button.setAttribute("disabled", true)  
-      buttonState(1)  
-      
+      buttonState(1)        
     } else {
       buttonState(1)
       button.removeAttribute("disabled")
@@ -146,6 +167,7 @@ let displayQuestion = () => {
   })
   answer = questions[questionId].answer
 }
+
 // Initialize quiz
 let questionId = 0
 let correctAnswers = 0
