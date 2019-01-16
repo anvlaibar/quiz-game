@@ -1,4 +1,5 @@
 @import 'reset.css';
+@import 'css/apple.css';
 
 body {
   font-family: 'IBM Plex Sans', sans-serif;
@@ -173,5 +174,10 @@ button:focus {
   outline: 1px solid #fff;
 }
 
-button:active {
+#response {
+  margin:2em auto 0;
+}
+
+#response i {
+  transform: scale(2);
 }

@@ -88,43 +88,7 @@ var questions = [
   }
 ];
 
-questions.forEach(function(item, index, array) {
-  //console.log(item,index)
-});
-
-// val = val.forEach(function (val, index) {
-// 	return val[index];
-// });
-
-function shuffle(array) {
-  var currentIndex = array.length,
-    temporaryValue,
-    randomIndex;
-
-  while (0 !== currentIndex) {
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
-
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
-  }
-  return array;
-}
-
-questions = shuffle(questions);
-//console.log(questions)
-
-function checkOnlyOne(id) {
-  var elem = document.getElementsByClassName("input");
-  var i;
-
-  for (i = 0; i < elem.length; i++) {
-    if (elem[i].value != id) elem[i].checked = false;
-  }
-}
-
-const choiceWrap = (id, choice) => `
+let choiceWrap = (id, choice) => `
   <li>
     <label class="choice">
      <input 
@@ -150,24 +114,55 @@ let html = (id, value) => {
   }
 };
 
-let num = Math.floor(Math.random() * questions.length);
 
-let val = questions[num].choices;
+let displayQuestion = () => {
+  question = html("question", questions[questionId].question);
+  choices = questions[questionId].choices.forEach(function(value, index) {
+    html("choices", choiceWrap(index, value));
+  });
+  answer = questions[questionId].answer;
+  console.log(answer);
 
-var val2 = questions[num].question;
+}
 
-var val3 = questions[num].answer;
-//html("choices",null);
-// val2.forEach(function (value, index) {
-// 	html("question","value.question");
-// });
+var questionId = 0;
+var correctAnswers = 0;
+displayQuestion();
 
-question = html("question", val2);
-choices = val.forEach(function(value, index) {
-  html("choices", choiceWrap(index, value));
-});
-answer = questions[num].answer;
-console.log(answer);
+function shuffle(array) {
+  var currentIndex = array.length,
+    temporaryValue,
+    randomIndex;
+
+  while (0 !== currentIndex) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+  return array;
+}
+
+questions = shuffle(questions);
+console.log(questions)
+
+function checkOnlyOne(id) {
+  var elem = document.getElementsByClassName("input");
+  var i;
+
+  for (i = 0; i < elem.length; i++) {
+    if (elem[i].value != id) elem[i].checked = false;
+  }
+}
+
+
+
+let response = (response) => {
+  document.getElementById("response").innerHTML = response
+}
+
 
 function submitAnswer() {
   var input = document.querySelector(".input:checked");
@@ -175,20 +170,40 @@ function submitAnswer() {
     var value = input.value;
     checkAnswer(value);
   } else {
-    console.log("Noe gikk galt...");
+    response('<i class="em em-wink"></i><p>Velg et alternativ først!</p>')
   }
 }
 
 function checkAnswer(value) {
   if (value == answer) {
+    correctAnswers++
     next();
   } else {
-    console.log("feil");
+    response('<i class="em em-cry"></i><p>Feil svar. Prøv igjen</p>')
   }
 }
 
 function next() {
-  console.log("neste");
+  questionId++
+  destroy()
+  response("")
+  if (questionId >= questions.length) {
+    destroy("q")
+    response(`<p>Du klarte å svare riktig på ${correctAnswers} 
+              av  ${questions.length} spørsmål!<p><button onclick="location.reload();">Prøv igjen</button>`);
+    // restart
+    questionId = 0;
+    correctAnswers = 0;
+    
+}
+  displayQuestion();
 
+}
+
+function destroy(id) {
+  if(!id) {
+    document.getElementById("question").innerHTML = "";
+    document.getElementById("choices").innerHTML = "";
+  } else document.getElementById(id).innerHTML = "";
 }
 
