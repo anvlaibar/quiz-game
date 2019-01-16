@@ -1,18 +1,4 @@
-/* questions = (answer) => {
-  question = [{}
-    "Test" = [{
-      "a",
-      "b",
-      "c",
-      "d"
-    ]},
-}]
-} */
-
-// TODO: Randomize questions
-// TODO: Randomize choices
-
-var questions = [
+let questions = [
   {
     question: "Hvor er det kaldest: Sydpolen eller Nordpolen?",
     choices: ["Nordpolen", "Sydpolen"],
@@ -41,7 +27,7 @@ var questions = [
     question: "Hva er en substring?",
     choices: [
       "En del av en string",
-      "En kodesnutt",
+      "En del av en kode",
       "En seksjon i en string",
       "En annen string"
     ],
@@ -71,8 +57,8 @@ var questions = [
 
   {
     question: "Hvem var den første personen i verdensrommet?",
-    choices: ["Neil Armstrong", "Yuri Gagarin", "Alexey Leonov", "John Glenn"],
-    answer: 1
+    choices: ["Neil Armstrong", "John Glenn", "Alexey Leonov", "Yuri Gagarin"],
+    answer: 3
   },
 
   {
@@ -87,6 +73,41 @@ var questions = [
     answer: 3
   }
 ]
+
+function shuffle(array) {
+  var currentIndex = array.length,
+    temporaryValue,
+    randomIndex
+
+  while (0 !== currentIndex) {
+    randomIndex = Math.floor(Math.random() * currentIndex)
+    currentIndex -= 1
+
+    temporaryValue = array[currentIndex]
+    array[currentIndex] = array[randomIndex]
+    array[randomIndex] = temporaryValue
+  }
+  return array
+}
+questions = shuffle(questions)
+
+// Prevent cheating
+var state = 1
+var button = document.querySelector(".submit")
+function buttonState(s) {
+  state = s
+}
+document.body.addEventListener("click", function(event) {
+  if (event.target.classList.contains("submit")) {
+    if (state == 0) {
+      button.setAttribute("disabled", true)
+      state = 1
+    } else {
+      state = 1
+      button.removeAttribute("disabled")
+    }
+  }
+})
 
 let choiceWrap = (id, choice) => `
   <li>
@@ -105,15 +126,14 @@ let choiceWrap = (id, choice) => `
 
 let html = (id, value) => {
   var elem = document.createElement("li")
-  //document.getElementById(elmId).innerHTML = value
   var id = document.getElementById(id)
-
+  if(id) {
   elem.innerHTML = value
   while (elem.firstChild) {
     id.appendChild(elem.firstChild)
   }
 }
-
+}
 
 let displayQuestion = () => {
   question = html("question", questions[questionId].question)
@@ -121,42 +141,25 @@ let displayQuestion = () => {
     html("choices", choiceWrap(index, value))
   })
   answer = questions[questionId].answer
-  console.log(answer)
-
 }
-
-var questionId = 0
-var correctAnswers = 0
+// Initialize quiz
+let questionId = 0
+let correctAnswers = 0
 displayQuestion()
 
-function shuffle(array) {
-  var currentIndex = array.length,
-    temporaryValue,
-    randomIndex
 
-  while (0 !== currentIndex) {
-    randomIndex = Math.floor(Math.random() * currentIndex)
-    currentIndex -= 1
 
-    temporaryValue = array[currentIndex]
-    array[currentIndex] = array[randomIndex]
-    array[randomIndex] = temporaryValue
-  }
-  return array
-}
 
-questions = shuffle(questions)
-console.log(questions)
 
 function checkOnlyOne(id) {
   var elems = document.getElementsByClassName("input")
-  
+
   for (let elem of elems) {
     if (elem.value != id) elem.checked = false
   }
 }
 
-let response = (response) => {
+let response = response => {
   document.getElementById("response").innerHTML = response
 }
 
@@ -174,35 +177,42 @@ function checkAnswer(value) {
   if (value == answer) {
     correctAnswers++
     response('<i class="em em-smiley"></i><p>Riktig! Bra jobba!</p>')
-    setTimeout(function(){
+    buttonState(0)
+    setTimeout(function() {
       next()
-    }, 1500)    
+    }, 1500)
   } else {
-    response('<i class="em em-cry"></i><p>Feil svar. Prøv igjen</p>')
+    response('<i class="em em-cry"></i><p>Feil svar...</p>')
+    setTimeout(function() {
+      next()
+    }, 1500)
   }
 }
 
+// Next question
 function next() {
   questionId++
   destroy()
   response("")
+  button.removeAttribute("disabled")
+  buttonState(1)
   if (questionId >= questions.length) {
     destroy("q")
     response(`<i class="em em-clap"></i><p>Du klarte å svare riktig på ${correctAnswers} 
-              av  ${questions.length} spørsmål!<p><button onclick="location.reload()">Prøv igjen</button>`)
-    // restart
+              av  ${
+                questions.length
+              } spørsmål!<p><button onclick="location.reload()">Prøv igjen</button>`)
+    // Restart
     questionId = 0
     correctAnswers = 0
-    
-}
+  }
   displayQuestion()
-
 }
 
+// Clean up
 function destroy(id) {
-  if(!id) {
+  if (!id) {
     document.getElementById("question").innerHTML = ""
     document.getElementById("choices").innerHTML = ""
   } else document.getElementById(id).innerHTML = ""
 }
-
