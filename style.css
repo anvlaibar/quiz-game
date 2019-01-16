@@ -38,7 +38,8 @@ h1 {
 
 #choices li:hover {
   box-shadow: 0 15px 65px 0 rgba(0,0,0,.1);
-  transform: scale(1.05)  
+  transform: scale(1.05);
+  background: #f7f9ff; 
 }
 
 main {
@@ -148,7 +149,7 @@ input[type="checkbox"]:checked ~ .check {
   background-color: #2196F3;
 }
 
-li:hover input[type="checkbox"] ~ .check {
+li:hover input[type="checkbox"]:not(:checked) ~ .check {
   background-color: #ccc;
 }
 
