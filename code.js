@@ -194,11 +194,12 @@ function next() {
   buttonState(1)
   if (questionId >= questions.length) {
     destroy("q")
-    response(`<i class="em em-clap"></i><p>Du klarte å svare riktig på ${correctAnswers} 
-              av  ${
-                questions.length
-              } spørsmål!<p><button onclick="location.reload()">Prøv igjen</button>`)
-    // Restart
+    response(`<i class="em em-clap"></i>
+              <p>Du klarte å svare riktig på ${correctAnswers} 
+              av  ${questions.length} spørsmål!</p>
+              <button onclick="location.reload()">Prøv igjen</button>`)
+    
+    // Reset
     questionId = 0
     correctAnswers = 0
   }

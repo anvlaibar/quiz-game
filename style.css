@@ -2,9 +2,22 @@
 @import "css/apple.css";
 
 body {
+  --translucence:.75;
   font-family: "IBM Plex Sans", sans-serif;
   font-size: 16px;
   text-align: center;
+  background: linear-gradient(to left, 
+    rgba(253, 116, 108,var(--translucence)), 
+    rgba(255, 144, 104,var(--translucence)),
+    rgba(227, 93, 91,var(--translucence)),
+    rgba(229, 57, 53,var(--translucence)));
+  background-size: 400% 400%;
+  animation: gradient 30s ease infinite;
+}
+@keyframes gradient {
+  from {background-position:0 50%}
+  50% {background-position: 100% 50%}
+  to {background-position:0 50%}
 }
 
 h1,
@@ -28,6 +41,10 @@ h1 {
   text-transform: uppercase;
 }
 
+h2#question {
+  font-size:34px;
+}
+
 #choices li {
   list-style: none;
   padding: 2em 1em;
@@ -39,7 +56,7 @@ h1 {
 #choices li:hover {
   box-shadow: 0 15px 65px 0 rgba(0, 0, 0, 0.1);
   transform: scale(1.05);
-  background: #f7f9ff;
+  background: #fe9d90;
 }
 
 main {
@@ -52,6 +69,7 @@ main {
   padding: 60px 30px;
   box-shadow: 0 75px 150px 0 rgba(0, 0, 0, 0.1);
   border-radius: 5px;
+  background: #EAF5F5;
 }
 
 code {
@@ -66,20 +84,22 @@ footer {
 .cp {
   text-align: center;
   margin: 0 auto;
-  color: #aaa;
+  color: #B5C0B5;
   font-family: "IBM Plex Mono", monospace;
 }
 
 .cp .repo img {
-  height: 16px;
+  height: 18px;
   vertical-align: middle;
   opacity: 0.5;
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  filter:invert(100);
 }
 
 .cp .repo:hover img {
   opacity: 0.75;
   transform: scale(1.1);
+  
 }
 
 .cp span {
@@ -89,12 +109,12 @@ footer {
 
 a {
   text-decoration: none;
-  color: #999;
+  color: #B5C0B5;
 }
 
 a:hover {
   color: inherit;
-  color: #666;
+  color: #B5C0B5;
 }
 
 ul {
@@ -129,7 +149,7 @@ input[type="checkbox"] {
   left: 0;
   height: 25px;
   width: 25px;
-  background-color: #eee;
+  background-color: #d1d1d1;
 }
 .check::after {
   content: "";
