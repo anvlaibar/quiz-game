@@ -1,8 +1,8 @@
 @import "reset.css";
-@import "css/apple.css";
+@import "third-part/emoji-awesome-master/src/css/apple.css";
 
 body {
-  --translucence:.75;
+  --translucence:.5;
   font-family: "IBM Plex Sans", sans-serif;
   font-size: 16px;
   text-align: center;
