@@ -127,12 +127,12 @@ let choiceWrap = (id, choice) => `
 let html = (id, value) => {
   var elem = document.createElement("li")
   var id = document.getElementById(id)
-  if(id) {
-  elem.innerHTML = value
-  while (elem.firstChild) {
-    id.appendChild(elem.firstChild)
+  if (id) {
+    elem.innerHTML = value
+    while (elem.firstChild) {
+      id.appendChild(elem.firstChild)
+    }
   }
-}
 }
 
 let displayQuestion = () => {
@@ -146,10 +146,6 @@ let displayQuestion = () => {
 let questionId = 0
 let correctAnswers = 0
 displayQuestion()
-
-
-
-
 
 function checkOnlyOne(id) {
   var elems = document.getElementsByClassName("input")

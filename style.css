@@ -1,8 +1,8 @@
-@import 'reset.css';
-@import 'css/apple.css';
+@import "reset.css";
+@import "css/apple.css";
 
 body {
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   font-size: 16px;
   text-align: center;
 }
@@ -13,13 +13,13 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'IBM Plex Serif', serif;
-  font-weight: 400;  
+  font-family: "IBM Plex Serif", serif;
+  font-weight: 400;
 }
 
 .content {
   max-width: 1080px;
-  padding:2em;
+  padding: 2em;
   width: 100%;
   margin: 0 auto;
 }
@@ -30,17 +30,16 @@ h1 {
 
 #choices li {
   list-style: none;
-  padding:2em 1em;
-  margin:1em;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,.04); 
-  transition: box-shadow .3s ease-in-out,
-              transform .3s ease-in-out; 
+  padding: 2em 1em;
+  margin: 1em;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
 #choices li:hover {
-  box-shadow: 0 15px 65px 0 rgba(0,0,0,.1);
+  box-shadow: 0 15px 65px 0 rgba(0, 0, 0, 0.1);
   transform: scale(1.05);
-  background: #f7f9ff; 
+  background: #f7f9ff;
 }
 
 main {
@@ -48,56 +47,54 @@ main {
 }
 
 .quizWrap {
-  width:80%;
-  margin:60px auto 0;
-  padding:60px 30px;
-  box-shadow: 0 75px 150px 0 rgba(0,0,0,.1);
+  width: 80%;
+  margin: 60px auto 0;
+  padding: 60px 30px;
+  box-shadow: 0 75px 150px 0 rgba(0, 0, 0, 0.1);
   border-radius: 5px;
 }
 
 code {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: "IBM Plex Mono", monospace;
 }
 
 footer {
-  width:80%;
+  width: 80%;
   margin: 0 auto;
 }
 
 .cp {
   text-align: center;
   margin: 0 auto;
-  color:#aaa;
-  font-family: 'IBM Plex Mono', monospace;
+  color: #aaa;
+  font-family: "IBM Plex Mono", monospace;
 }
 
 .cp .repo img {
   height: 16px;
   vertical-align: middle;
-  opacity: .5;
-  transition:
-    transform .3s ease-in-out,
-    opacity .3s ease-in-out;
+  opacity: 0.5;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
 .cp .repo:hover img {
-  opacity: .75;
+  opacity: 0.75;
   transform: scale(1.1);
 }
 
 .cp span {
   letter-spacing: -2px;
-  font-size: .85em;
+  font-size: 0.85em;
 }
 
 a {
   text-decoration: none;
-  color:#999;  
+  color: #999;
 }
 
 a:hover {
-  color:inherit;
-  color:#666;
+  color: inherit;
+  color: #666;
 }
 
 ul {
@@ -147,7 +144,7 @@ input[type="checkbox"] {
   transform: rotate(45deg);
 }
 input[type="checkbox"]:checked ~ .check {
-  background-color: #2196F3;
+  background-color: #2196f3;
 }
 
 li:hover input[type="checkbox"]:not(:checked) ~ .check {
@@ -162,7 +159,7 @@ button {
   background: #0069ed;
   color: #ffffff;
   text-transform: uppercase;
-  margin:2em auto 0;
+  margin: 2em auto 0;
 }
 
 button:hover,
@@ -175,7 +172,7 @@ button:focus {
 }
 
 #response {
-  margin:2em auto 0;
+  margin: 2em auto 0;
 }
 
 #response i {
