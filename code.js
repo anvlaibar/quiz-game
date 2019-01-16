@@ -93,17 +93,21 @@ questions = shuffle(questions)
 
 // Prevent cheating
 var state = 1
-var button = document.querySelector(".submit")
-function buttonState(s) {
+let button = document.querySelector(".submit")
+let buttonState = (s)  => {
   state = s
+  return state  
 }
+
 document.body.addEventListener("click", function(event) {
   if (event.target.classList.contains("submit")) {
     if (state == 0) {
-      button.setAttribute("disabled", true)
-      state = 1
+      
+      button.setAttribute("disabled", true)  
+      buttonState(1)  
+      
     } else {
-      state = 1
+      buttonState(1)
       button.removeAttribute("disabled")
     }
   }
