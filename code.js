@@ -86,7 +86,7 @@ var questions = [
     choices: ["Sort", "Grønn", "Hvit", "Rød"],
     answer: 3
   }
-];
+]
 
 let choiceWrap = (id, choice) => `
   <li>
@@ -96,79 +96,75 @@ let choiceWrap = (id, choice) => `
       id="${id}" 
       value="${id}" 
       class="input" 
-      onclick="checkOnlyOne(this.value);" />
+      onclick="checkOnlyOne(this.value)" />
       <span class="check"></span>
       <span> ${choice}</span>
     </label>
   </li>
-  `;
+  `
 
 let html = (id, value) => {
-  var elem = document.createElement("li");
-  //document.getElementById(elmId).innerHTML = value;
-  var id = document.getElementById(id);
+  var elem = document.createElement("li")
+  //document.getElementById(elmId).innerHTML = value
+  var id = document.getElementById(id)
 
-  elem.innerHTML = value;
+  elem.innerHTML = value
   while (elem.firstChild) {
-    id.appendChild(elem.firstChild);
+    id.appendChild(elem.firstChild)
   }
-};
+}
 
 
 let displayQuestion = () => {
-  question = html("question", questions[questionId].question);
-  choices = questions[questionId].choices.forEach(function(value, index) {
-    html("choices", choiceWrap(index, value));
-  });
-  answer = questions[questionId].answer;
-  console.log(answer);
+  question = html("question", questions[questionId].question)
+  choices = questions[questionId].choices.forEach((value, index) => {
+    html("choices", choiceWrap(index, value))
+  })
+  answer = questions[questionId].answer
+  console.log(answer)
 
 }
 
-var questionId = 0;
-var correctAnswers = 0;
-displayQuestion();
+var questionId = 0
+var correctAnswers = 0
+displayQuestion()
 
 function shuffle(array) {
   var currentIndex = array.length,
     temporaryValue,
-    randomIndex;
+    randomIndex
 
   while (0 !== currentIndex) {
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
+    randomIndex = Math.floor(Math.random() * currentIndex)
+    currentIndex -= 1
 
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
+    temporaryValue = array[currentIndex]
+    array[currentIndex] = array[randomIndex]
+    array[randomIndex] = temporaryValue
   }
-  return array;
+  return array
 }
 
-questions = shuffle(questions);
+questions = shuffle(questions)
 console.log(questions)
 
 function checkOnlyOne(id) {
-  var elem = document.getElementsByClassName("input");
-  var i;
-
-  for (i = 0; i < elem.length; i++) {
-    if (elem[i].value != id) elem[i].checked = false;
+  var elems = document.getElementsByClassName("input")
+  
+  for (let elem of elems) {
+    if (elem.value != id) elem.checked = false
   }
 }
-
-
 
 let response = (response) => {
   document.getElementById("response").innerHTML = response
 }
 
-
 function submitAnswer() {
-  var input = document.querySelector(".input:checked");
+  var input = document.querySelector(".input:checked")
   if (input) {
-    var value = input.value;
-    checkAnswer(value);
+    var value = input.value
+    checkAnswer(value)
   } else {
     response('<i class="em em-wink"></i><p>Velg et alternativ først!</p>')
   }
@@ -177,7 +173,10 @@ function submitAnswer() {
 function checkAnswer(value) {
   if (value == answer) {
     correctAnswers++
-    next();
+    response('<i class="em em-smiley"></i><p>Riktig! Bra jobba!</p>')
+    setTimeout(function(){
+      next()
+    }, 1500)    
   } else {
     response('<i class="em em-cry"></i><p>Feil svar. Prøv igjen</p>')
   }
@@ -189,21 +188,21 @@ function next() {
   response("")
   if (questionId >= questions.length) {
     destroy("q")
-    response(`<p>Du klarte å svare riktig på ${correctAnswers} 
-              av  ${questions.length} spørsmål!<p><button onclick="location.reload();">Prøv igjen</button>`);
+    response(`<i class="em em-clap"></i><p>Du klarte å svare riktig på ${correctAnswers} 
+              av  ${questions.length} spørsmål!<p><button onclick="location.reload()">Prøv igjen</button>`)
     // restart
-    questionId = 0;
-    correctAnswers = 0;
+    questionId = 0
+    correctAnswers = 0
     
 }
-  displayQuestion();
+  displayQuestion()
 
 }
 
 function destroy(id) {
   if(!id) {
-    document.getElementById("question").innerHTML = "";
-    document.getElementById("choices").innerHTML = "";
-  } else document.getElementById(id).innerHTML = "";
+    document.getElementById("question").innerHTML = ""
+    document.getElementById("choices").innerHTML = ""
+  } else document.getElementById(id).innerHTML = ""
 }
 
